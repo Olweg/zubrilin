@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Зубрилин Сергей — Психолог</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Yeseva+One&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- Base --- */
+    :root{
+      --soft-1: #f6f3ef; /* base */
+      --soft-2: #eef4f6; /* cool */
+      --accent: #8aa6a3; /* soft teal */
+      --muted: #6b6b6b;
+      --glass: rgba(255,255,255,0.55);
+    }
+    html,body{height:100%;}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:linear-gradient(180deg,var(--soft-1), #eef5f4 60%); color:#20323a; -webkit-font-smoothing:antialiased;}
+
+    /* Headline font fallback */
+    .display{font-family:'Yeseva One', serif;}
+
+    /* Smooth entrance animations */
+    .fade-up { opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.2,.9,.3,1); }
+    .fade-up.visible{ opacity:1; transform:none; }
+
+    /* Gentle floating for hero image */
+    @keyframes floatY { 0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)} }
+    .float-slow{ animation: floatY 6s ease-in-out infinite; }
+
+    /* Soft glass card */
+    .glass{ background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45)); backdrop-filter: blur(8px) saturate(1.05); border: 1px solid rgba(255,255,255,0.45); }
+
+    /* Button microinteractions */
+    .btn-ghost{ transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease; }
+    .btn-ghost:hover{ transform:translateY(-6px) rotate(-.2deg) scale(1.02); box-shadow: 0 18px 40px rgba(35,50,60,0.12); }
+
+    /* Navigation pills */
+    .nav-pill{ transition:all .25s ease; }
+    .nav-pill:hover{ transform:translateY(-4px); box-shadow:0 10px 30px rgba(34,50,60,0.08); }
+
+    /* Subtle focus styles for accessibility */
+    a:focus, button:focus, input:focus, textarea:focus{ outline:3px solid rgba(138,166,163,0.25); outline-offset:4px; }
+
+    /* Preloader */
+    #preloader{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:60; background:linear-gradient(135deg,#f6f4f1 0%, #eef7f7 100%); }
+    .loader-wrap{ text-align:center; }
+    .logo-mark{ width:96px; height:96px; display:inline-block; border-radius:24px; box-shadow: 0 12px 40px rgba(32,50,58,0.08); background:linear-gradient(135deg,#f8faf9,#e9f3f2); display:flex; align-items:center; justify-content:center; }
+    .logo-mark svg{ transform:scale(.9); }
+    .loader-text{ margin-top:12px; color:var(--muted); font-weight:600; letter-spacing:0.06em; }
+
+    /* Particle background (SVG) */
+    .bg-particles{ position:fixed; inset:0; z-index:-1; opacity:.9; pointer-events:none; }
+
+    /* Form elements */
+    input, textarea{ transition: box-shadow .18s ease, transform .12s ease; }
+    input:focus, textarea:focus{ box-shadow: 0 8px 30px rgba(34,50,60,0.07); transform:translateY(-2px); }
+
+    /* prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce){ .float-slow, .fade-up, .btn-ghost, .nav-pill { animation:none; transition:none; } }
+
+    /* Responsive tweaks */
+    @media (max-width:768px){ .hero-title{ font-size:2rem; } }
+  </style>
+</head>
+
+<body class="antialiased">
+  <!-- Decorative particles (SVG) -->
+  <svg class="bg-particles" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1">
+        <stop offset="0%" stop-color="#f7f9f8"/>
+        <stop offset="100%" stop-color="#eef7f7"/>
+      </linearGradient>
+    </defs>
+    <g opacity="0.6">
+      <ellipse cx="12%" cy="18%" rx="220" ry="80" fill="#e8f5f4" />
+      <ellipse cx="88%" cy="80%" rx="280" ry="110" fill="#f2efe9" />
+      <circle cx="6%" cy="86%" r="36" fill="#dfeff0" />
+      <circle cx="92%" cy="12%" r="48" fill="#f3f6f7" />
+    </g>
+  </svg>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader-wrap">
+      <div class="logo-mark" aria-hidden="true">
+        <!-- subtle mark -->
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+          <rect x="2" y="2" width="44" height="44" rx="10" fill="#ffffff" opacity="0.9"/>
+          <path d="M14 30c6-6 12-10 18-14" stroke="#8AA6A3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="18" r="2.5" fill="#8AA6A3"/>
+        </svg>
+      </div>
+      <div class="loader-text">Зубрилин Сергей</div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <main id="mainContent" class="max-w-6xl mx-auto p-6 opacity-0" aria-hidden="true">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between py-4 px-4 glass rounded-3xl shadow-md mt-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-lg bg-white/60 flex items-center justify-center shadow-sm">
+          <span class="display text-2xl text-[#2b4b49]">Z</span>
+        </div>
+        <div>
+          <div class="text-lg font-semibold">Зубрилин.</div>
+          <div class="text-xs text-muted text-[0.85rem]" style="color:var(--muted)">Психолог, психотерапевт</div>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-3">
+        <a href="#about" class="nav-pill px-4 py-2 rounded-full glass text-sm font-medium">Обо мне</a>
+        <a href="#services" class="nav-pill px-4 py-2 rounded-full glass text-sm font-medium">Услуги</a>
+        <a href="#reviews" class="nav-pill px-4 py-2 rounded-full glass text-sm font-medium">Отзывы</a>
+        <a href="#contact" class="nav-pill px-4 py-2 rounded-full glass text-sm font-medium">Контакты</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="mt-12 grid md:grid-cols-2 gap-8 items-center">
+      <div class="order-2 md:order-1 text-center md:text-left">
+        <h1 class="display text-5xl md:text-6xl leading-tight font-extrabold mb-4 hero-title">Зубрилин Сергей<br><span class="text-[1.1rem] font-medium" style="color:var(--muted)">Психолог</span></h1>
+        <p class="text-lg md:text-xl text-gray-700 mb-6">Помогаю найти гармонию и спокойствие внутри себя. Работаю с тревогами, стрессом и межличностными конфликтами.</p>
+
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center sm:items-start">
+          <a href="#contact" class="btn-ghost inline-block px-6 py-3 rounded-2xl glass shadow font-medium">Записаться на консультацию</a>
+          <a href="#about" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl text-sm bg-white/90 shadow">Подробнее
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 opacity-70" viewBox="0 0 24 24" fill="none" stroke="#2b4b49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+          </a>
+        </div>
+
+        <div class="mt-6 text-sm text-gray-500">Телефон: <a href="tel:+79216481377" class="underline">+7 921 648 13 77</a> • Telegram: <a href="https://t.me/Psycholog_Zubrilin" target="_blank" class="underline">@Psycholog_Zubrilin</a></div>
+      </div>
+
+      <div class="order-1 md:order-2 flex justify-center md:justify-end">
+        <!-- hero image — keep same file names so concept unchanged -->
+        <div class="w-[340px] h-[340px] rounded-3xl overflow-hidden shadow-2xl float-slow">
+          <img src="face1.png" alt="Психолог — Зубрилин" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mt-12 glass rounded-2xl p-8 fade-up">
+      <div class="md:flex gap-8 items-center">
+        <div class="w-full md:w-72 rounded-2xl overflow-hidden shadow-lg">
+          <img src="face2.png" alt="Обо мне — Зубрилин" class="w-full h-full object-cover" />
+        </div>
+        <div class="flex-1">
+          <h2 class="text-2xl font-semibold mb-3">Обо мне</h2>
+          <p class="text-gray-700 leading-relaxed">Я дипломированный психолог с большим опытом. Работаю с тревогами, стрессом, межличностными конфликтами. Помогаю вам научиться слышать себя и обрести внутреннее спокойствие, раскрыть внутренний потенциал и обрести уверенность в завтрашнем дне.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How I work -->
+    <section class="mt-10 grid md:grid-cols-2 gap-8 items-center fade-up">
+      <div>
+        <h3 class="text-2xl font-semibold mb-4">Как я работаю</h3>
+        <p class="text-gray-700 mb-4">Каждая встреча — это пространство доверия и открытого диалога. Мы вместе исследуем ваши переживания, находим скрытые причины тревог и шаг за шагом движемся к решению.</p>
+        <p class="text-gray-700">Использую современные методы психотерапии, ориентированные на результат и ваше личное развитие.</p>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-4 glass rounded-xl text-center">
+            <div class="font-semibold">Индивидуально</div>
+            <div class="text-sm text-gray-600">Работа лично с вами</div>
+          </div>
+          <div class="p-4 glass rounded-xl text-center">
+            <div class="font-semibold">Семейно</div>
+            <div class="text-sm text-gray-600">Поддержка отношений</div>
+          </div>
+          <div class="p-4 glass rounded-xl text-center">
+            <div class="font-semibold">Онлайн</div>
+            <div class="text-sm text-gray-600">Гибкие сессии</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl overflow-hidden shadow-lg">
+        <img src="face3.png" alt="Работа с клиентами" class="w-full h-[420px] object-cover" />
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="mt-12 glass rounded-2xl p-8 fade-up">
+      <h3 class="text-2xl font-semibold text-center mb-6">Отзывы клиентов</h3>
+      <div class="space-y-4">
+        <blockquote class="p-5 bg-white/60 rounded-xl shadow">«Очень благодарна Сергею за помощь! После нескольких консультаций я почувствовала облегчение и уверенность в себе.»<div class="mt-2 font-semibold">Анна</div></blockquote>
+        <blockquote class="p-5 bg-white/60 rounded-xl shadow">«Потрясающий специалист! Помог мне разобраться с тревогами и улучшить отношения в семье.»<div class="mt-2 font-semibold">Сергей</div></blockquote>
+        <blockquote class="p-5 bg-white/60 rounded-xl shadow">«Очень уютная атмосфера на консультациях, чувствуешь себя в безопасности и открыто говоришь о своих переживаниях.»<div class="mt-2 font-semibold">Мария</div></blockquote>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="mt-12 fade-up">
+      <h3 class="text-2xl font-semibold text-center mb-6">Контакты</h3>
+      <div class="max-w-xl mx-auto glass p-8 rounded-2xl shadow">
+        <p class="text-center font-medium mb-4">Телефон: <a href="tel:+79216481377" class="underline">+7 921 648 13 77</a></p>
+        <p class="text-center font-medium mb-6">Telegram: <a href="https://t.me/Psycholog_Zubrilin" target="_blank" class="underline">@Psycholog_Zubrilin</a></p>
+
+      </div>
+    </section>
+
+    <footer class="text-center text-sm italic text-gray-500 mt-10 mb-8">© 2025 Зубрилин Сергей Владимирович. Все права защищены.</footer>
+  </main>
+
+  <script>
+    // Preloader: hide then reveal with gentle animation
+    window.addEventListener('load', () => {
+      const pre = document.getElementById('preloader');
+      const main = document.getElementById('mainContent');
+      setTimeout(() => {
+        pre.animate([{opacity:1},{opacity:0}], {duration:450, easing:'cubic-bezier(.2,.9,.3,1)'}).onfinish = () => pre.style.display = 'none';
+        main.style.opacity = 0;
+        main.removeAttribute('aria-hidden');
+        main.animate([{opacity:0, transform:'translateY(8px)'},{opacity:1, transform:'none'}], {duration:600, easing:'cubic-bezier(.2,.9,.3,1)'});
+        main.style.transition = 'opacity .6s ease';
+        main.style.opacity = 1;
+        // add visible class to fade-up elements after reveal
+        document.querySelectorAll('.fade-up').forEach((el, i) => setTimeout(()=> el.classList.add('visible'), 120 + i*140));
+      }, 420);
+    });
+
+    // IntersectionObserver for other fade-up items
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, {threshold: 0.18});
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    // Fake submit for demo (keeps no backend changes)
+    function fakeSubmit(){
+      const btn = document.querySelector('form button');
+      btn.disabled = true;
+      const old = btn.innerText;
+      btn.innerText = 'Отправка...';
+      setTimeout(()=>{ btn.innerText = 'Отправлено ✓'; btn.classList.add('opacity-80'); }, 900);
+    }
+  </script>
+</body>
+</html>
